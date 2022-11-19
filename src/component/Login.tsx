@@ -51,7 +51,7 @@ const Login: React.FC<Props> = ({ setLogined, setUserData }) => {
       />
       <br />
       <br />
-      <button onClick={testLoginMechanism}>제출</button>
+      <button onClick={testLoginMechanism}>{`로그인`}</button>
       <h6>{`${studentId}, ${pw}`}</h6>
     </>
   );
