@@ -1,17 +1,20 @@
-import React from "react";
-import Button from "./component/button";
+import React, { useState } from "react";
 import "./App.css";
+import Login from "./component/Login";
+import MainPage from "./component/MainPage";
+import { EmptyUserData } from "./utill/Types";
 
 function App() {
-  const alarm = () => {
-    alert("Bye~");
-  };
+  const [logined, setLogined] = useState(false);
+  const [userData, setUserData] = useState(EmptyUserData);
 
   return (
     <div>
-      <Button width={100} onClick={alarm}>
-        <div>This is Button</div>
-      </Button>
+      {!logined ? (
+        <Login setLogined={setLogined} setUserData={setUserData} />
+      ) : (
+        <MainPage setLogined={setLogined} userData={userData} />
+      )}
     </div>
   );
 }
