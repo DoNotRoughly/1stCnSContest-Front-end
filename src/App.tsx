@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import Login from "./component/Login";
+import LoginPage from "./component/LoginPage";
 import MainPage from "./component/MainPage";
 import { EmptyUserData } from "./utill/types";
 
@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       {!logined ? (
-        <Login setLogined={setLogined} setUserData={setUserData} />
+        <LoginPage setLogined={setLogined} setUserData={setUserData} />
       ) : (
         <MainPage
           setLogined={setLogined}

@@ -21,6 +21,8 @@ const StudentPage: React.FC<Props> = ({
   const [filteredCourse, setFilteredCourse] = useState(dummyFiltered);
   const [applicated, setApplicated] = useState(dummyApplied);
 
+  // userData의 정보 가져다가 통신해서 setApplicated 실행.
+
   return (
     <>
       <h1>{`${userData.name} 학생`}</h1>

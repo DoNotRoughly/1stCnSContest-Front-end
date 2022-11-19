@@ -13,6 +13,7 @@ const Login: React.FC<Props> = ({ setLogined, setUserData }) => {
   const [studentId, setStudentId] = useState("");
   const [pw, setPw] = useState("");
 
+  // 실제 학번 비밀번호 백으로 보내서 로그인 여부 확인
   const testLoginMechanism = () => {
     if (studentId === "200000000" && pw === "000000") {
       setUserData(dummyAdmin);
