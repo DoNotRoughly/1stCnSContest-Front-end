@@ -11,8 +11,9 @@ const ApplyByCourseId: React.FC<Props> = ({ setUserData }) => {
 
   const apply = () => {
     // 통신해서 과목번호를 입력하여 수강신청
-    let data: UserData = EmptyUserData;
-    setUserData(data);
+    // let data: UserData = EmptyUserData;
+    // setUserData(data);
+    alert("신청이 완료되었습니다!");
   };
 
   return (

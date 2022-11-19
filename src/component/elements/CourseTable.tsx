@@ -6,7 +6,7 @@ import CourseRow from "./CourseRow";
 interface Props {
   type: number;
   courseList: Course[];
-  setUserData: (value: UserData) => void;
+  setUserData?: (value: UserData) => void;
 }
 
 const CourseTable: React.FC<Props> = ({ type, courseList, setUserData }) => {

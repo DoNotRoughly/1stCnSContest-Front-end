@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { dummyApplied, dummyFiltered } from "../utill/dummies";
 import { Course, EmptyUserData, UserData } from "../utill/types";
-import ApplyByCourseId from "./student/ApplyByCourseId";
-import CourseTable from "./student/CourseTable";
-import Filter from "./student/Filter";
+import ApplyByCourseId from "./elements/ApplyByCourseId";
+import CourseTable from "./elements/CourseTable";
+import Filter from "./elements/Filter";
 
 // Props 타입 명시
 interface Props {
@@ -39,7 +39,7 @@ const StudentPage: React.FC<Props> = ({
           setLogined(false);
         }}
       >
-        {`돌아가기`}
+        {`로그아웃`}
       </button>
     </>
   );

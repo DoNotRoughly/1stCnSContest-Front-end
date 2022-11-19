@@ -1,24 +1,28 @@
 import React, { useState } from "react";
 import { Course, EmptyUserData, UserData } from "../../utill/types";
+import CourseModifyModal from "./CourseModifyModal";
 
 // Props 타입 명시
 interface Props {
   type: number;
   course: Course;
-  setUserData: (value: UserData) => void;
+  setUserData?: (value: UserData) => void;
 }
 
 const CourseRow: React.FC<Props> = ({ type, course, setUserData }) => {
-  const apply = () => {
-    // 수강 신청을 보냄
-    let data: UserData = EmptyUserData;
-    setUserData(data);
-  };
-
+  const [visible, setVisible] = useState(false);
   const cancel = () => {
     // 취소 신청 보냄
-    let data: UserData = EmptyUserData;
-    setUserData(data);
+    // let data: UserData = EmptyUserData;
+    // if (setUserData !== undefined) setUserData(data);
+    alert("신청 취소되었습니다!");
+  };
+
+  const apply = () => {
+    // 수강 신청을 보냄
+    // let data: UserData = EmptyUserData;
+    // if (setUserData !== undefined) setUserData(data);
+    alert("신청되었습니다!");
   };
 
   return (
@@ -41,11 +45,12 @@ const CourseRow: React.FC<Props> = ({ type, course, setUserData }) => {
         </th>
       ) : type === 2 ? (
         <th>
-          <button onClick={apply}>수정</button>
+          <button onClick={() => setVisible(true)}>수정</button>
         </th>
       ) : (
         <th>{`잘못된 정보입니다.`}</th>
       )}
+      {visible && <CourseModifyModal setVisible={setVisible} course={course} />}
     </tr>
   );
 };

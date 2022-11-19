@@ -21,7 +21,7 @@ const MainPage: React.FC<Props> = ({ setLogined, userData, setUserData }) => {
           setUserData={setUserData}
         />
       ) : userData.type === "admin" ? (
-        <AdminPage setLogined={setLogined} userData={userData} />
+        <AdminPage setLogined={setLogined} />
       ) : (
         <>
           <h1>잘못된 접근입니다!</h1>
@@ -30,7 +30,7 @@ const MainPage: React.FC<Props> = ({ setLogined, userData, setUserData }) => {
               setUserData(EmptyUserData);
               setLogined(false);
             }}
-          />
+          >{`돌아가기`}</button>
         </>
       )}
     </>

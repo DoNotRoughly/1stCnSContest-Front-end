@@ -11,9 +11,9 @@ const Filter: React.FC<Props> = ({ setFilteredCourse }) => {
 
   const getFilteredCourses = () => {
     // 통신해서 필터된 과목 받아오기
-    let data: Course[] = [];
-    alert("과목을 조회합니다.");
-    setFilteredCourse(data);
+    // let data: Course[] = [];
+    // setFilteredCourse(data);
+    alert("과목을 조회를 완료했습니다!");
   };
 
   return (
