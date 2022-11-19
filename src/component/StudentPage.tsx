@@ -27,12 +27,12 @@ const StudentPage: React.FC<Props> = ({
       <Filter setFilteredCourse={setFilteredCourse} />
       <ApplyByCourseId setUserData={setUserData} />
       <CourseTable
-        type={0}
+        type={1}
         courseList={filteredCourse}
         setUserData={setUserData}
       />
       <hr />
-      <CourseTable type={1} courseList={applicated} setUserData={setUserData} />
+      <CourseTable type={0} courseList={applicated} setUserData={setUserData} />
       <button
         onClick={() => {
           setUserData(EmptyUserData);

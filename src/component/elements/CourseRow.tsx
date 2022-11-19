@@ -31,14 +31,20 @@ const CourseRow: React.FC<Props> = ({ type, course, setUserData }) => {
       <th>{course.major}</th>
       <th>{course.studentIds.length}</th>
       <th>{course.maxPeople}</th>
-      {type ? (
+      {type === 0 ? (
         <th>
           <button onClick={cancel}>취소</button>
         </th>
-      ) : (
+      ) : type === 1 ? (
         <th>
           <button onClick={apply}>신청</button>
         </th>
+      ) : type === 2 ? (
+        <th>
+          <button onClick={apply}>수정</button>
+        </th>
+      ) : (
+        <th>{`잘못된 정보입니다.`}</th>
       )}
     </tr>
   );

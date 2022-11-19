@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { dummyUserData } from "../utill/dummies";
+import { dummyAdmin, dummyStudent } from "../utill/dummies";
 import { UserData } from "../utill/types";
 
 // Props 타입 명시
@@ -14,8 +14,14 @@ const Login: React.FC<Props> = ({ setLogined, setUserData }) => {
   const [pw, setPw] = useState("");
 
   const testLoginMechanism = () => {
-    if (true || (studentId === "201802130" && pw === "990915")) {
-      setUserData(dummyUserData);
+    if (studentId === "200000000" && pw === "000000") {
+      setUserData(dummyAdmin);
+      setLogined(true);
+    } else if (
+      (studentId === "" && pw === "") ||
+      (studentId === "201802130" && pw === "990915")
+    ) {
+      setUserData(dummyStudent);
       setLogined(true);
     } else {
       alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
@@ -37,7 +43,7 @@ const Login: React.FC<Props> = ({ setLogined, setUserData }) => {
       <br />
       <label>비밀번호: </label>
       <input
-        type="password"
+        type="text" // 원래 password
         value={pw}
         onChange={(event) => {
           setPw(event.target.value);

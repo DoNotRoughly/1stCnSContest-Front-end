@@ -1,5 +1,5 @@
 import React from "react";
-import { UserData } from "../utill/types";
+import { EmptyUserData, UserData } from "../utill/types";
 import AdminPage from "./AdminPage";
 import StudentPage from "./StudentPage";
 
@@ -20,8 +20,18 @@ const MainPage: React.FC<Props> = ({ setLogined, userData, setUserData }) => {
           userData={userData}
           setUserData={setUserData}
         />
-      ) : (
+      ) : userData.type === "admin" ? (
         <AdminPage setLogined={setLogined} userData={userData} />
+      ) : (
+        <>
+          <h1>잘못된 접근입니다!</h1>
+          <button
+            onClick={() => {
+              setUserData(EmptyUserData);
+              setLogined(false);
+            }}
+          />
+        </>
       )}
     </>
   );

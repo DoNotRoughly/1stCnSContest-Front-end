@@ -10,7 +10,7 @@ interface Props {
 const AdminPage: React.FC<Props> = ({ setLogined, userData }) => {
   return (
     <>
-      <h1>응애 관리자</h1>
+      <h1>{`응애 관리자 페이지`}</h1>
       <button onClick={() => setLogined(false)}>돌아가기</button>
     </>
   );
