@@ -1,3 +1,4 @@
+// 타입 정의
 export interface UserData {
   type: string; // 학생인지 관리자인지, "student" or "admin"
   id: string; // 학번 혹은 관리자번호
@@ -6,15 +7,12 @@ export interface UserData {
   email?: string; // 이메일
   applicated?: CourseID[]; // 신청한 과목 번호 리스트
 }
-export const EmptyUserData: UserData = {
-  type: "",
-  id: "",
-};
 
 export interface CourseID {
   id: string; // 과목 번호
   division: string; // 분반 번호
 }
+
 export interface Course {
   courseId: CourseID;
   point: number; // 학점
@@ -25,8 +23,18 @@ export interface Course {
   maxPeople: number; // 총원
   studentIds: string[]; // 현재 신청 인원의 학번들
 }
+
+// 각 타입에 의한 null값 정의
+export const EmptyUserData: UserData = {
+  type: "",
+  id: "",
+};
+export const EmptyCourseId = {
+  id: "",
+  division: "",
+};
 export const EmptyCourse = {
-  courseId: { id: "", division: "" },
+  courseId: EmptyCourseId,
   division: "",
   major: "",
   year: "",
