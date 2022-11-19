@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UserData } from "../utill/Types";
+import { UserData } from "../utill/types";
 
 // Props 타입 명시
 interface Props {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { UserData } from "../utill/Types";
+import { dummyUserData } from "../utill/dummies";
+import { UserData } from "../utill/types";
 
 // Props 타입 명시
 interface Props {
@@ -14,14 +15,7 @@ const Login: React.FC<Props> = ({ setLogined, setUserData }) => {
 
   const testLoginMechanism = () => {
     if (true || (studentId === "201802130" && pw === "990915")) {
-      setUserData({
-        type: "student", // 학생인지 관리자인지, "student" or "admin"
-        id: "201802130", // 학번
-        year: "3", // 학년
-        name: "이시형", // 이름
-        email: "dcd124012@gmail.com", // 이메일
-        applicated: [], // 신청한 과목 리스트
-      });
+      setUserData(dummyUserData);
       setLogined(true);
     } else {
       alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
@@ -30,6 +24,7 @@ const Login: React.FC<Props> = ({ setLogined, setUserData }) => {
 
   return (
     <>
+      <h1>로그인</h1>
       <label>학번: </label>
       <input
         type="text"
