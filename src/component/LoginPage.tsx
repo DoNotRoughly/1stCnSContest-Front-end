@@ -23,7 +23,25 @@ const Login: React.FC<Props> = ({ setLogined, setUserData }) => {
         params: { userId: studentId, pw: pw },
       })
       .then((value) => {
-        setUserData(value.data);
+        console.log(value.data);
+        const data = value.data;
+        if (data.type === "student") {
+          const tmp: UserData = {
+            userId: data.userId,
+            type: "student",
+            year: "3",
+            name: data.name,
+            email: data.email, // 이메일
+            applicated: data.applicated, // 신청한 과목의 키번호
+          };
+          setUserData(tmp);
+        } else {
+          const tmp: UserData = {
+            userId: value.data.userId,
+            type: "admin",
+          };
+          setUserData(tmp);
+        }
         setLogined(true);
         alert("로그인에 성공했습니다!");
       })

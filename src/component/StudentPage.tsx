@@ -23,6 +23,8 @@ const StudentPage: React.FC<Props> = ({
   const [filteredCourse, setFilteredCourse] = useState([EmptyCourse]);
   const [applicated, setApplicated] = useState([]);
 
+  // console.log(`std: ${userData.name}`);
+
   // userData의 정보 가져다가 통신해서 setApplicated 실행.
   const init = async () => {
     await axios
@@ -64,6 +66,7 @@ const StudentPage: React.FC<Props> = ({
       <CourseTable
         type={1}
         courseList={filteredCourse}
+        userData={userData}
         setUserData={setUserData}
         setFilteredCourse={setFilteredCourse}
       />
@@ -71,6 +74,7 @@ const StudentPage: React.FC<Props> = ({
       <CourseTable
         type={0}
         courseList={applicated}
+        userData={userData}
         setUserData={setUserData}
         setFilteredCourse={setFilteredCourse}
       />

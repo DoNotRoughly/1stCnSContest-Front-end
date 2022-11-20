@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URI } from "../utill/apis";
 import { dummyFiltered } from "../utill/dummies";
+import { EmptyUserData } from "../utill/types";
 import CourseTable from "./elements/CourseTable";
 import Filter from "./elements/Filter";
 import PeriodUpdater from "./elements/PeriodUpdater";
@@ -40,6 +41,7 @@ const AdminPage: React.FC<Props> = ({ setLogined }) => {
       <CourseTable
         type={2}
         courseList={filteredCourse}
+        userData={EmptyUserData}
         setUserData={() => {}}
         setFilteredCourse={setFilteredCourse}
       />

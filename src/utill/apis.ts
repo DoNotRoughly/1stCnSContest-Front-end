@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Course } from "./types";
-export const BASE_URI = "http://127.0.0.1:3030";
+export const BASE_URI = "http://127.0.0.1:3030/api";
 
 export const API_Filtering = async (label: string, value: string) => {
   console.log("시작");

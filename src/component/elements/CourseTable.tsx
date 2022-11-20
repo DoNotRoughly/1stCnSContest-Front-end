@@ -6,6 +6,7 @@ import CourseRow from "./CourseRow";
 interface Props {
   type: number;
   courseList: Course[];
+  userData: UserData;
   setUserData: (value: UserData) => void;
   setFilteredCourse: (value: Course[]) => void;
 }
@@ -13,9 +14,11 @@ interface Props {
 const CourseTable: React.FC<Props> = ({
   type,
   courseList,
+  userData,
   setUserData,
   setFilteredCourse,
 }) => {
+  // console.log(`table: ${userData.name}`);
   return (
     <table>
       <tr>
@@ -33,6 +36,7 @@ const CourseTable: React.FC<Props> = ({
         <CourseRow
           type={type}
           course={course}
+          userData={userData}
           setUserData={setUserData}
           setFilteredCourse={setFilteredCourse}
         />

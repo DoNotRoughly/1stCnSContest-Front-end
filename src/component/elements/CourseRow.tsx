@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { BASE_URI } from "../../utill/apis";
 import { Course, EmptyUserData, UserData } from "../../utill/types";
 import CourseModifyModal from "./CourseModifyModal";
 
@@ -6,6 +8,7 @@ import CourseModifyModal from "./CourseModifyModal";
 interface Props {
   type: number;
   course: Course;
+  userData: UserData;
   setUserData: (value: UserData) => void;
   setFilteredCourse: (value: Course[]) => void;
 }
@@ -13,10 +16,14 @@ interface Props {
 const CourseRow: React.FC<Props> = ({
   type,
   course,
+  userData,
   setUserData,
   setFilteredCourse,
 }) => {
   const [visible, setVisible] = useState(false);
+
+  // console.log(`row: ${userData.name}`);
+
   const cancel = () => {
     // 취소 신청 보냄
     // let data: UserData = EmptyUserData;
@@ -24,10 +31,22 @@ const CourseRow: React.FC<Props> = ({
     alert("신청 취소되었습니다!");
   };
 
-  const apply = () => {
+  const apply = async () => {
     // 수강 신청을 보냄
-    // let data: UserData = EmptyUserData;
-    // if (setUserData !== undefined) setUserData(data);
+    console.log(userData, course);
+    await axios
+      .patch(`${BASE_URI}/user/apply`, {
+        params: { userId: userData.userId, course: course.courseId },
+      })
+      .then((value) => {
+        console.log(value);
+        setUserData(value.data);
+        alert("신청되었습니다!");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("실패했습니다!");
+      });
     alert("신청되었습니다!");
   };
 
