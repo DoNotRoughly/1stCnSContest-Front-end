@@ -18,7 +18,12 @@ const AdminPage: React.FC<Props> = ({ setLogined }) => {
       <h1>{`응애 관리자 페이지`}</h1>
       <PeriodUpdater /> <br />
       <Filter setFilteredCourse={setFilteredCourse} />
-      <CourseTable type={2} courseList={filteredCourse} />
+      <CourseTable
+        type={2}
+        courseList={filteredCourse}
+        setUserData={() => {}}
+        setFilteredCourse={setFilteredCourse}
+      />
       <button onClick={() => setLogined(false)}>{`로그아웃`}</button>
     </>
   );

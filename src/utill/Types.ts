@@ -16,7 +16,7 @@ export interface Course {
   professor: string; // 교수
   name: string; // 과목 이름
   maxPeople: number; // 총원
-  studentIds: string[]; // 현재 신청 인원의 키번호
+  currentPeople: number; // 현재 신청 인원
 }
 
 // 각 타입에 의한 null값 정의
@@ -32,5 +32,5 @@ export const EmptyCourse: Course = {
   professor: "",
   name: "",
   maxPeople: 0,
-  studentIds: [],
+  currentPeople: 0,
 };

@@ -6,10 +6,16 @@ import CourseModifyModal from "./CourseModifyModal";
 interface Props {
   type: number;
   course: Course;
-  setUserData?: (value: UserData) => void;
+  setUserData: (value: UserData) => void;
+  setFilteredCourse: (value: Course[]) => void;
 }
 
-const CourseRow: React.FC<Props> = ({ type, course, setUserData }) => {
+const CourseRow: React.FC<Props> = ({
+  type,
+  course,
+  setUserData,
+  setFilteredCourse,
+}) => {
   const [visible, setVisible] = useState(false);
   const cancel = () => {
     // 취소 신청 보냄
@@ -33,7 +39,7 @@ const CourseRow: React.FC<Props> = ({ type, course, setUserData }) => {
       <th>{course.professor}</th>
       <th>{course.point}</th>
       <th>{course.major}</th>
-      <th>{course.studentIds.length}</th>
+      <th>{course.currentPeople}</th>
       <th>{course.maxPeople}</th>
       {type === 0 ? (
         <th>
@@ -50,7 +56,13 @@ const CourseRow: React.FC<Props> = ({ type, course, setUserData }) => {
       ) : (
         <th>{`잘못된 정보입니다.`}</th>
       )}
-      {visible && <CourseModifyModal setVisible={setVisible} course={course} />}
+      {visible && (
+        <CourseModifyModal
+          setVisible={setVisible}
+          course={course}
+          setFilteredCourse={setFilteredCourse}
+        />
+      )}
     </tr>
   );
 };

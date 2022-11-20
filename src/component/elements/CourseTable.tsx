@@ -6,10 +6,16 @@ import CourseRow from "./CourseRow";
 interface Props {
   type: number;
   courseList: Course[];
-  setUserData?: (value: UserData) => void;
+  setUserData: (value: UserData) => void;
+  setFilteredCourse: (value: Course[]) => void;
 }
 
-const CourseTable: React.FC<Props> = ({ type, courseList, setUserData }) => {
+const CourseTable: React.FC<Props> = ({
+  type,
+  courseList,
+  setUserData,
+  setFilteredCourse,
+}) => {
   return (
     <table>
       <tr>
@@ -24,7 +30,12 @@ const CourseTable: React.FC<Props> = ({ type, courseList, setUserData }) => {
         <th>수강신청</th>
       </tr>
       {courseList.map((course) => (
-        <CourseRow type={type} course={course} setUserData={setUserData} />
+        <CourseRow
+          type={type}
+          course={course}
+          setUserData={setUserData}
+          setFilteredCourse={setFilteredCourse}
+        />
       ))}
     </table>
   );

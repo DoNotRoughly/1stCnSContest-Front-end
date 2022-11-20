@@ -23,7 +23,7 @@ export const dummyFiltered: Course[] = [
     professor: "채승규",
     name: "기초 Spring",
     maxPeople: 30,
-    studentIds: ["3", "2", "3", "2", "1", "2", "2"],
+    currentPeople: 0,
   },
   {
     courseId: "10742-00",
@@ -33,18 +33,7 @@ export const dummyFiltered: Course[] = [
     professor: "강성엽",
     name: "원랜디개론",
     maxPeople: 40,
-    studentIds: [
-      "123",
-      "34",
-      "231",
-      "24",
-      "24",
-      "24",
-      "52",
-      "574",
-      "2345",
-      "342",
-    ],
+    currentPeople: 0,
   },
   {
     courseId: "32659-00",
@@ -54,7 +43,7 @@ export const dummyFiltered: Course[] = [
     professor: "하상호",
     name: "인공지능개론",
     maxPeople: 30,
-    studentIds: ["4", "3", "2", "1"],
+    currentPeople: 0,
   },
 ];
 
@@ -67,17 +56,6 @@ export const dummyApplied: Course[] = [
     professor: "강성엽",
     name: "원랜디개론",
     maxPeople: 40,
-    studentIds: [
-      "123",
-      "34",
-      "231",
-      "24",
-      "24",
-      "24",
-      "52",
-      "574",
-      "2345",
-      "342",
-    ],
+    currentPeople: 0,
   },
 ];
