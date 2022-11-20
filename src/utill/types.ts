@@ -19,6 +19,11 @@ export interface Course {
   currentPeople: number; // 현재 신청 인원
 }
 
+export interface ApplyPeriod {
+  start: Date;
+  end: Date;
+}
+
 // 각 타입에 의한 null값 정의
 export const EmptyUserData: UserData = {
   userId: "",
@@ -33,4 +38,8 @@ export const EmptyCourse: Course = {
   name: "",
   maxPeople: 0,
   currentPeople: 0,
+};
+export const NullApplyPeriod: ApplyPeriod = {
+  start: new Date(),
+  end: new Date(),
 };
