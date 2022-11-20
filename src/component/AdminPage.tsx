@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { BASE_URI } from "../utill/apis";
 import { dummyFiltered } from "../utill/dummies";
-import { UserData } from "../utill/types";
 import CourseTable from "./elements/CourseTable";
 import Filter from "./elements/Filter";
 import PeriodUpdater from "./elements/PeriodUpdater";
@@ -12,6 +13,24 @@ interface Props {
 
 const AdminPage: React.FC<Props> = ({ setLogined }) => {
   const [filteredCourse, setFilteredCourse] = useState(dummyFiltered);
+
+  const init = async () => {
+    await axios
+      .get(`${BASE_URI}/course/filter`, {
+        params: { label: "major", value: "" },
+      })
+      .then((value) => {
+        setFilteredCourse(value.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLogined(false);
+        alert("잘못된 접근입니다.");
+      });
+  };
+  useEffect(() => {
+    init();
+  }, []);
 
   return (
     <>

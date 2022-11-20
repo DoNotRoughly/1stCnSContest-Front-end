@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { BASE_URI } from "../utill/apis";
 import { dummyApplied, dummyFiltered } from "../utill/dummies";
-import { Course, EmptyUserData, UserData } from "../utill/types";
+import { Course, EmptyCourse, EmptyUserData, UserData } from "../utill/types";
 import ApplyByCourseId from "./elements/ApplyByCourseId";
 import CourseTable from "./elements/CourseTable";
 import Filter from "./elements/Filter";
@@ -18,10 +20,41 @@ const StudentPage: React.FC<Props> = ({
   setUserData,
 }) => {
   // const emptyList: Course[] = [];
-  const [filteredCourse, setFilteredCourse] = useState(dummyFiltered);
-  const [applicated, setApplicated] = useState(dummyApplied);
+  const [filteredCourse, setFilteredCourse] = useState([EmptyCourse]);
+  const [applicated, setApplicated] = useState([]);
 
   // userData의 정보 가져다가 통신해서 setApplicated 실행.
+  const init = async () => {
+    await axios
+      .get(`${BASE_URI}/course/filter`, {
+        params: { label: "major", value: "" },
+      })
+      .then((value) => {
+        setFilteredCourse(value.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setUserData(EmptyUserData);
+        setLogined(false);
+        alert("잘못된 접근입니다.");
+      });
+    // await axios
+    //   .get(`${BASE_URI}/course/filter`, {
+    //     params: { label: "major", value: "" },
+    //   })
+    //   .then((value) => {
+    //     setFilteredCourse(value.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     setUserData(EmptyUserData);
+    //     setLogined(false);
+    //     alert("잘못된 접근입니다.");
+    //   });
+  };
+  useEffect(() => {
+    init();
+  }, []);
 
   return (
     <>
