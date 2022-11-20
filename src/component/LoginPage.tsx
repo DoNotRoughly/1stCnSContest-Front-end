@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { BASE_URI } from "../utill/apis";
 import { dummyAdmin, dummyStudent } from "../utill/dummies";
 import { UserData } from "../utill/types";
 
@@ -14,19 +16,21 @@ const Login: React.FC<Props> = ({ setLogined, setUserData }) => {
   const [pw, setPw] = useState("");
 
   // 실제 학번 비밀번호 백으로 보내서 로그인 여부 확인
-  const testLoginMechanism = () => {
-    if (studentId === "200000000" && pw === "000000") {
-      setUserData(dummyAdmin);
-      setLogined(true);
-    } else if (
-      (studentId === "" && pw === "") ||
-      (studentId === "201802130" && pw === "990915")
-    ) {
-      setUserData(dummyStudent);
-      setLogined(true);
-    } else {
-      alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
-    }
+  const login = async () => {
+    console.log(studentId, pw);
+    await axios
+      .post(`${BASE_URI}/user/login`, {
+        params: { userId: studentId, pw: pw },
+      })
+      .then((value) => {
+        setUserData(value.data);
+        setLogined(true);
+        alert("로그인에 성공했습니다!");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("학번이나 비밀번호를 잘못 입력하였습니다.");
+      });
   };
 
   return (
@@ -52,7 +56,7 @@ const Login: React.FC<Props> = ({ setLogined, setUserData }) => {
       />
       <br />
       <br />
-      <button onClick={testLoginMechanism}>{`로그인`}</button>
+      <button onClick={login}>{`로그인`}</button>
       <h6>{`${studentId}, ${pw}`}</h6>
     </>
   );
