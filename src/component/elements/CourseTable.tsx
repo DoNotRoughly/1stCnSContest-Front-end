@@ -19,9 +19,9 @@ const CourseTable: React.FC<Props> = ({ type, courseList, setUserData }) => {
         <th>교수명</th>
         <th>학점</th>
         <th>학과</th>
-        <th>신청 인원</th>
+        <th>신청</th>
         <th>정원</th>
-        <th>수강 신청</th>
+        <th>수강신청</th>
       </tr>
       {courseList.map((course) => (
         <CourseRow type={type} course={course} setUserData={setUserData} />
