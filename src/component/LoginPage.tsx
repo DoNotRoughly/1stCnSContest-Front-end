@@ -66,7 +66,7 @@ const Login: React.FC<Props> = ({ setLogined, setUserData, setAdminData }) => {
       <br />
       <label>비밀번호: </label>
       <input
-        type="text" // 원래 password
+        type="password" // 원래 password
         value={pw}
         onChange={(event) => {
           setPw(event.target.value);
@@ -75,7 +75,6 @@ const Login: React.FC<Props> = ({ setLogined, setUserData, setAdminData }) => {
       <br />
       <br />
       <button onClick={login}>{`로그인`}</button>
-      <h6>{`${studentId}, ${pw}`}</h6>
     </>
   );
 };
