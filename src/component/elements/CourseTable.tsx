@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Course, StudentData } from "../../utill/types";
 import AddCourseRow from "./AddCourseRow";
 import CourseRow from "./CourseRow";

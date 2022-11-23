@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URI } from "../utill/apis";
-import { dummyFiltered } from "../utill/dummies";
 import { EmptyCourse, NullStudent } from "../utill/types";
 import CourseTable from "./elements/CourseTable";
 import Filter from "./elements/Filter";
