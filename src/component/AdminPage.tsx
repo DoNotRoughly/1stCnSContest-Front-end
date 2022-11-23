@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URI } from "../utill/apis";
 import { dummyFiltered } from "../utill/dummies";
-import { EmptyUserData } from "../utill/types";
+import { EmptyCourse, NullStudent } from "../utill/types";
 import CourseTable from "./elements/CourseTable";
 import Filter from "./elements/Filter";
 import PeriodUpdater from "./elements/PeriodUpdater";
@@ -13,12 +13,15 @@ interface Props {
 }
 
 const AdminPage: React.FC<Props> = ({ setLogined }) => {
-  const [filteredCourse, setFilteredCourse] = useState(dummyFiltered);
+  const [filteredCourse, setFilteredCourse] = useState([EmptyCourse]);
+
+  const [label, setLable] = useState("major");
+  const [value, setValue] = useState("");
 
   const init = async () => {
     await axios
       .get(`${BASE_URI}/course/filter`, {
-        params: { label: "major", value: "" },
+        params: { label: label, value: value },
       })
       .then((value) => {
         setFilteredCourse(value.data);
@@ -37,11 +40,17 @@ const AdminPage: React.FC<Props> = ({ setLogined }) => {
     <>
       <h1>{`응애 관리자 페이지`}</h1>
       <PeriodUpdater /> <br />
-      <Filter setFilteredCourse={setFilteredCourse} />
+      <Filter
+        label={label}
+        value={value}
+        setLable={setLable}
+        setValue={setValue}
+        setFilteredCourse={setFilteredCourse}
+      />
       <CourseTable
         type={2}
         courseList={filteredCourse}
-        userData={EmptyUserData}
+        userData={NullStudent}
         setUserData={() => {}}
         setFilteredCourse={setFilteredCourse}
       />

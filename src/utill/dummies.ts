@@ -1,12 +1,12 @@
-import { Course, UserData } from "./types";
+import { Course, StudentData, UserData } from "./types";
 
-export const dummyStudent: UserData = {
+export const dummyStudent: StudentData = {
   userId: "201802130", // 학번
   type: "student", // 학생인지 관리자인지, "student" or "admin"
   year: "3", // 학년
   name: "이시형", // 이름
   email: "dcd124012@gmail.com", // 이메일
-  applicated: ["10742-00"], // 신청한 과목 리스트
+  course: [], // 신청한 과목 리스트
 };
 
 export const dummyAdmin: UserData = {

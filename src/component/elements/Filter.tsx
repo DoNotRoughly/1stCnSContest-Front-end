@@ -6,13 +6,20 @@ import { Course } from "../../utill/types";
 
 // Props 타입 명시
 interface Props {
+  label: string;
+  value: string;
+  setLable: (value: string) => void;
+  setValue: (value: string) => void;
   setFilteredCourse: (value: Course[]) => void;
 }
 
-const Filter: React.FC<Props> = ({ setFilteredCourse }) => {
-  const [label, setLable] = useState("");
-  const [value, setValue] = useState("");
-
+const Filter: React.FC<Props> = ({
+  label,
+  value,
+  setLable,
+  setValue,
+  setFilteredCourse,
+}) => {
   const getFilteredCourses = async () => {
     // 통신해서 필터된 과목 받아오기
     console.log(label, value);

@@ -35,12 +35,28 @@ const CourseModifyModal: React.FC<Props> = ({
       })
       .then((value) => {
         console.log(value);
-        setFilteredCourse(value.data);
+        setFilteredCourse(value.data.result);
         alert("과목을 수정을 완료했습니다!");
       })
       .catch((err) => {
         console.log(err);
         alert("과목을 조회를 실패했습니다!");
+      });
+  };
+
+  const deleteCourse = async () => {
+    await axios
+      .delete(`${BASE_URI}/course`, {
+        params: { courseId: course.courseId },
+      })
+      .then((value) => {
+        console.log(value.data);
+        setFilteredCourse(value.data.result);
+        alert("삭제 완료했습니다!");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("삭제 실패했습니다!");
       });
   };
 
@@ -88,7 +104,7 @@ const CourseModifyModal: React.FC<Props> = ({
         <button
           onClick={() => {
             // course 정보 삭제
-
+            deleteCourse();
             setVisible(false);
           }}
         >{`삭제`}</button>

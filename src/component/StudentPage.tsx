@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URI } from "../utill/apis";
 import { dummyApplied, dummyFiltered } from "../utill/dummies";
-import { Course, EmptyCourse, EmptyUserData, UserData } from "../utill/types";
+import { Course, EmptyCourse, NullStudent, StudentData } from "../utill/types";
 import ApplyByCourseId from "./elements/ApplyByCourseId";
 import CourseTable from "./elements/CourseTable";
 import Filter from "./elements/Filter";
@@ -10,8 +10,8 @@ import Filter from "./elements/Filter";
 // Props 타입 명시
 interface Props {
   setLogined: (value: boolean) => void;
-  userData: UserData;
-  setUserData: (value: UserData) => void;
+  userData: StudentData;
+  setUserData: (value: StudentData) => void;
 }
 
 const StudentPage: React.FC<Props> = ({
@@ -19,24 +19,25 @@ const StudentPage: React.FC<Props> = ({
   userData,
   setUserData,
 }) => {
-  // const emptyList: Course[] = [];
   const [filteredCourse, setFilteredCourse] = useState([EmptyCourse]);
-  const [applicated, setApplicated] = useState([]);
+  const [applicated, setApplicated] = useState([EmptyCourse]);
 
-  // console.log(`std: ${userData.name}`);
+  const [label, setLable] = useState("major");
+  const [value, setValue] = useState("");
 
   // userData의 정보 가져다가 통신해서 setApplicated 실행.
   const init = async () => {
     await axios
       .get(`${BASE_URI}/course/filter`, {
-        params: { label: "major", value: "" },
+        params: { label: label, value: value },
       })
       .then((value) => {
         setFilteredCourse(value.data);
+        setApplicated(userData.course);
       })
       .catch((err) => {
         console.log(err);
-        setUserData(EmptyUserData);
+        setUserData(NullStudent);
         setLogined(false);
         alert("잘못된 접근입니다.");
       });
@@ -56,13 +57,19 @@ const StudentPage: React.FC<Props> = ({
   };
   useEffect(() => {
     init();
-  }, []);
+  }, [userData]);
 
   return (
     <>
       <h1>{`${userData.name} 학생`}</h1>
-      <Filter setFilteredCourse={setFilteredCourse} />
-      <ApplyByCourseId setUserData={setUserData} />
+      <Filter
+        label={label}
+        value={value}
+        setLable={setLable}
+        setValue={setValue}
+        setFilteredCourse={setFilteredCourse}
+      />
+      <ApplyByCourseId userData={userData} setUserData={setUserData} />
       <CourseTable
         type={1}
         courseList={filteredCourse}
@@ -80,7 +87,7 @@ const StudentPage: React.FC<Props> = ({
       />
       <button
         onClick={() => {
-          setUserData(EmptyUserData);
+          setUserData(NullStudent);
           setLogined(false);
         }}
       >

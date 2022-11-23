@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Course, UserData } from "../../utill/types";
+import { Course, StudentData } from "../../utill/types";
 import CourseRow from "./CourseRow";
 
 // Props 타입 명시
 interface Props {
   type: number;
   courseList: Course[];
-  userData: UserData;
-  setUserData: (value: UserData) => void;
+  userData: StudentData;
+  setUserData: (value: StudentData) => void;
   setFilteredCourse: (value: Course[]) => void;
 }
 
@@ -30,7 +30,7 @@ const CourseTable: React.FC<Props> = ({
         <th>학과</th>
         <th>신청</th>
         <th>정원</th>
-        <th>수강신청</th>
+        <th>---</th>
       </tr>
       {courseList.map((course) => (
         <CourseRow

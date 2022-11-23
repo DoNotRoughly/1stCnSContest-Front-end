@@ -2,16 +2,17 @@ import axios from "axios";
 import React, { useState } from "react";
 import { BASE_URI } from "../utill/apis";
 import { dummyAdmin, dummyStudent } from "../utill/dummies";
-import { UserData } from "../utill/types";
+import { StudentData, UserData } from "../utill/types";
 
 // Props 타입 명시
 interface Props {
   setLogined: (value: boolean) => void;
-  setUserData: (value: UserData) => void;
+  setUserData: (value: StudentData) => void;
+  setAdminData: (value: UserData) => void;
 }
 
 // Login 페이지 렌더링
-const Login: React.FC<Props> = ({ setLogined, setUserData }) => {
+const Login: React.FC<Props> = ({ setLogined, setUserData, setAdminData }) => {
   const [studentId, setStudentId] = useState("");
   const [pw, setPw] = useState("");
 
@@ -26,21 +27,21 @@ const Login: React.FC<Props> = ({ setLogined, setUserData }) => {
         console.log(value.data);
         const data = value.data;
         if (data.type === "student") {
-          const tmp: UserData = {
+          const tmpA = {
             userId: data.userId,
             type: "student",
-            year: "3",
+            year: data.year,
             name: data.name,
             email: data.email, // 이메일
-            applicated: data.applicated, // 신청한 과목의 키번호
+            course: data.course, // 신청한 과목
           };
-          setUserData(tmp);
+          setUserData(tmpA);
         } else {
-          const tmp: UserData = {
+          const tmpB = {
             userId: value.data.userId,
             type: "admin",
           };
-          setUserData(tmp);
+          setAdminData(tmpB);
         }
         setLogined(true);
         alert("로그인에 성공했습니다!");

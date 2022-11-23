@@ -1,15 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { BASE_URI } from "../../utill/apis";
-import { Course, EmptyUserData, UserData } from "../../utill/types";
+import { Course, NullStudent, StudentData } from "../../utill/types";
 import CourseModifyModal from "./CourseModifyModal";
 
 // Props 타입 명시
 interface Props {
   type: number;
   course: Course;
-  userData: UserData;
-  setUserData: (value: UserData) => void;
+  userData: StudentData;
+  setUserData: (value: StudentData) => void;
   setFilteredCourse: (value: Course[]) => void;
 }
 
@@ -24,11 +24,23 @@ const CourseRow: React.FC<Props> = ({
 
   // console.log(`row: ${userData.name}`);
 
-  const cancel = () => {
+  const cancel = async () => {
     // 취소 신청 보냄
-    // let data: UserData = EmptyUserData;
-    // if (setUserData !== undefined) setUserData(data);
-    alert("신청 취소되었습니다!");
+    console.log(userData, course);
+    await axios
+      .patch(`${BASE_URI}/user/cancel`, {
+        params: { userId: userData.userId, courseId: course.courseId },
+      })
+      .then((value) => {
+        console.log(value);
+        setUserData(value.data.user);
+        alert("신청 취소되었습니다!");
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        alert("실패했습니다!");
+      });
+    console.log(userData);
   };
 
   const apply = async () => {
@@ -36,18 +48,18 @@ const CourseRow: React.FC<Props> = ({
     console.log(userData, course);
     await axios
       .patch(`${BASE_URI}/user/apply`, {
-        params: { userId: userData.userId, course: course.courseId },
+        params: { userId: userData.userId, courseId: course.courseId },
       })
       .then((value) => {
         console.log(value);
-        setUserData(value.data);
+        setUserData(value.data.user);
         alert("신청되었습니다!");
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data);
         alert("실패했습니다!");
       });
-    alert("신청되었습니다!");
+    console.log(userData);
   };
 
   return (

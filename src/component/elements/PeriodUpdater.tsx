@@ -22,7 +22,7 @@ const PeriodUpdater: React.FC<Props> = ({}) => {
 
   const init = async () => {
     await axios
-      .get(`${BASE_URI}/period/get`, {})
+      .get(`${BASE_URI}/period`, {})
       .then((value) => {
         console.log(value.data);
         const start: Date = new Date(value.data.start);
@@ -65,7 +65,7 @@ const PeriodUpdater: React.FC<Props> = ({}) => {
 
     console.log(p);
     await axios
-      .patch(`${BASE_URI}/period/set`, {
+      .patch(`${BASE_URI}/period`, {
         params: { period: JSON.stringify(p) },
       })
       .then((value) => {
