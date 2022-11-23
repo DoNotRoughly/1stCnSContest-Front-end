@@ -1,29 +1,68 @@
+import axios from "axios";
 import React, { useState } from "react";
-import { Course, EmptyUserData, UserData } from "../../utill/types";
+import { BASE_URI } from "../../utill/apis";
+import { Course, NullStudent, StudentData } from "../../utill/types";
 import CourseModifyModal from "./CourseModifyModal";
 
 // Props 타입 명시
 interface Props {
   type: number;
   course: Course;
-  setUserData?: (value: UserData) => void;
+  userData: StudentData;
+  setUserData: (value: StudentData) => void;
+  setFilteredCourse: (value: Course[]) => void;
 }
 
-const CourseRow: React.FC<Props> = ({ type, course, setUserData }) => {
+const CourseRow: React.FC<Props> = ({
+  type,
+  course,
+  userData,
+  setUserData,
+  setFilteredCourse,
+}) => {
   const [visible, setVisible] = useState(false);
-  const cancel = () => {
+
+  // console.log(`row: ${userData.name}`);
+
+  const cancel = async () => {
     // 취소 신청 보냄
-    // let data: UserData = EmptyUserData;
-    // if (setUserData !== undefined) setUserData(data);
-    alert("신청 취소되었습니다!");
+    console.log(userData, course);
+    await axios
+      .patch(`${BASE_URI}/user/cancel`, {
+        params: { userId: userData.userId, courseId: course.courseId },
+      })
+      .then((value) => {
+        console.log(value);
+        setUserData(value.data.user);
+        alert("신청 취소되었습니다!");
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        alert(err.response.data.message);
+      });
+    console.log(userData);
   };
 
-  const apply = () => {
+  const apply = async () => {
     // 수강 신청을 보냄
-    // let data: UserData = EmptyUserData;
-    // if (setUserData !== undefined) setUserData(data);
-    alert("신청되었습니다!");
+    console.log(userData, course);
+    await axios
+      .patch(`${BASE_URI}/user/apply`, {
+        params: { userId: userData.userId, courseId: course.courseId },
+      })
+      .then((value) => {
+        console.log(value);
+        setUserData(value.data.user);
+        alert("신청되었습니다!");
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        alert(err.response.data.message);
+      });
+    console.log(userData);
   };
+
+  // console.log(course.courseId);
 
   return (
     <tr>
@@ -33,7 +72,7 @@ const CourseRow: React.FC<Props> = ({ type, course, setUserData }) => {
       <th>{course.professor}</th>
       <th>{course.point}</th>
       <th>{course.major}</th>
-      <th>{course.studentIds.length}</th>
+      <th>{course.currentPeople}</th>
       <th>{course.maxPeople}</th>
       {type === 0 ? (
         <th>
@@ -50,7 +89,13 @@ const CourseRow: React.FC<Props> = ({ type, course, setUserData }) => {
       ) : (
         <th>{`잘못된 정보입니다.`}</th>
       )}
-      {visible && <CourseModifyModal setVisible={setVisible} course={course} />}
+      {visible && (
+        <CourseModifyModal
+          setVisible={setVisible}
+          course={course}
+          setFilteredCourse={setFilteredCourse}
+        />
+      )}
     </tr>
   );
 };

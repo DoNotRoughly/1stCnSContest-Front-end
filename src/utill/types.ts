@@ -2,10 +2,13 @@
 export interface UserData {
   userId: string; // 학번 혹은 관리자번호
   type: string; // 학생인지 관리자인지, "student" or "admin"
-  year?: string; // 학년
-  name?: string; // 이름
-  email?: string; // 이메일
-  applicated?: string[]; // 신청한 과목의 키번호
+}
+
+export interface StudentData extends UserData {
+  year: string; // 학년
+  name: string; // 이름
+  email: string; // 이메일
+  course: Course[]; // 신청한 과목의 키번호
 }
 
 export interface Course {
@@ -16,13 +19,26 @@ export interface Course {
   professor: string; // 교수
   name: string; // 과목 이름
   maxPeople: number; // 총원
-  studentIds: number[]; // 현재 신청 인원의 키번호
+  currentPeople: number; // 현재 신청 인원
+}
+
+export interface ApplyPeriod {
+  start: Date;
+  end: Date;
 }
 
 // 각 타입에 의한 null값 정의
-export const EmptyUserData: UserData = {
+export const NullUser: UserData = {
   userId: "",
   type: "",
+};
+export const NullStudent: StudentData = {
+  userId: "",
+  type: "",
+  year: "",
+  name: "",
+  email: "",
+  course: [],
 };
 export const EmptyCourse: Course = {
   courseId: "",
@@ -32,5 +48,9 @@ export const EmptyCourse: Course = {
   professor: "",
   name: "",
   maxPeople: 0,
-  studentIds: [],
+  currentPeople: 0,
+};
+export const NullApplyPeriod: ApplyPeriod = {
+  start: new Date(),
+  end: new Date(),
 };
