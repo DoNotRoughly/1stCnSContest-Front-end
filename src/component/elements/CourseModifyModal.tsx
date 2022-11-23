@@ -21,7 +21,6 @@ const CourseModifyModal: React.FC<Props> = ({
   const [maxPeople, setmaxPeople] = useState(course.maxPeople);
 
   const modify = async () => {
-    console.log(professor, name, maxPeople);
     let tmp: Course = {
       ...course,
       professor: professor,
@@ -34,8 +33,6 @@ const CourseModifyModal: React.FC<Props> = ({
         params: { data: JSON.stringify(tmp) },
       })
       .then((value) => {
-        console.log("장난함?");
-        console.log(value);
         setFilteredCourse(value.data);
         alert("과목을 수정을 완료했습니다!");
       })
@@ -51,7 +48,6 @@ const CourseModifyModal: React.FC<Props> = ({
         params: { courseId: course.courseId },
       })
       .then((value) => {
-        console.log(value.data);
         setFilteredCourse(value.data.result);
         alert("삭제 완료했습니다!");
       })

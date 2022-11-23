@@ -17,13 +17,11 @@ const Login: React.FC<Props> = ({ setLogined, setUserData, setAdminData }) => {
 
   // 실제 학번 비밀번호 백으로 보내서 로그인 여부 확인
   const login = async () => {
-    console.log(studentId, pw);
     await axios
       .post(`${BASE_URI}/user/login`, {
         params: { userId: studentId, pw: pw },
       })
       .then((value) => {
-        console.log(value);
         const data = value.data.user;
         if (data.type === "student") {
           const tmpA = {
