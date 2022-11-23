@@ -24,8 +24,8 @@ const Login: React.FC<Props> = ({ setLogined, setUserData, setAdminData }) => {
         params: { userId: studentId, pw: pw },
       })
       .then((value) => {
-        console.log(value.data);
-        const data = value.data;
+        console.log(value);
+        const data = value.data.user;
         if (data.type === "student") {
           const tmpA = {
             userId: data.userId,

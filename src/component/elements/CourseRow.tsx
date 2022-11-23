@@ -38,7 +38,7 @@ const CourseRow: React.FC<Props> = ({
       })
       .catch((err) => {
         console.log(err.response.data);
-        alert("실패했습니다!");
+        alert(err.response.data.message);
       });
     console.log(userData);
   };
@@ -57,10 +57,12 @@ const CourseRow: React.FC<Props> = ({
       })
       .catch((err) => {
         console.log(err.response.data);
-        alert("실패했습니다!");
+        alert(err.response.data.message);
       });
     console.log(userData);
   };
+
+  // console.log(course.courseId);
 
   return (
     <tr>

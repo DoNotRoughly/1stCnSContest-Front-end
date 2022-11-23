@@ -34,8 +34,9 @@ const CourseModifyModal: React.FC<Props> = ({
         params: { data: JSON.stringify(tmp) },
       })
       .then((value) => {
+        console.log("장난함?");
         console.log(value);
-        setFilteredCourse(value.data.result);
+        setFilteredCourse(value.data);
         alert("과목을 수정을 완료했습니다!");
       })
       .catch((err) => {

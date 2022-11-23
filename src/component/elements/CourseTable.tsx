@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Course, StudentData } from "../../utill/types";
+import AddCourseRow from "./AddCourseRow";
 import CourseRow from "./CourseRow";
 
 // Props 타입 명시
@@ -41,6 +42,11 @@ const CourseTable: React.FC<Props> = ({
           setFilteredCourse={setFilteredCourse}
         />
       ))}
+      {type === 2 ? (
+        <AddCourseRow setFilteredCourse={setFilteredCourse} />
+      ) : (
+        <></>
+      )}
     </table>
   );
 };

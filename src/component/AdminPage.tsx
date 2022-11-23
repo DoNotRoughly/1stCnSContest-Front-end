@@ -34,6 +34,7 @@ const AdminPage: React.FC<Props> = ({ setLogined }) => {
   };
   useEffect(() => {
     init();
+    console.log(filteredCourse);
   }, []);
 
   return (
