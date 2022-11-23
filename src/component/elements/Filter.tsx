@@ -1,7 +1,6 @@
 import axios from "axios";
+import React from "react";
 import { BASE_URI } from "../../utill/apis";
-import React, { useState } from "react";
-import { API_Filtering } from "../../utill/apis";
 import { Course } from "../../utill/types";
 
 // Props 타입 명시

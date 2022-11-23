@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { BASE_URI } from "../utill/apis";
-import { dummyAdmin, dummyStudent } from "../utill/dummies";
 import { StudentData, UserData } from "../utill/types";
 
 // Props 타입 명시

@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { BASE_URI } from "../../utill/apis";
-import { Course, NullStudent, StudentData } from "../../utill/types";
-import CourseModifyModal from "./CourseModifyModal";
+import { Course } from "../../utill/types";
 
 // Props 타입 명시
 interface Props {
