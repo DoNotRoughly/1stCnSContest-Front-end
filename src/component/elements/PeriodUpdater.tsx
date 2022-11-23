@@ -24,10 +24,9 @@ const PeriodUpdater: React.FC<Props> = ({}) => {
     await axios
       .get(`${BASE_URI}/period`, {})
       .then((value) => {
-        console.log(value.data);
         const start: Date = new Date(value.data.start);
         const end: Date = new Date(value.data.end);
-        console.log(start, end);
+
         setStartDate(start);
         setStartHour(start.getHours());
         setStartMinute(start.getMinutes());
@@ -63,13 +62,11 @@ const PeriodUpdater: React.FC<Props> = ({}) => {
       ),
     };
 
-    console.log(p);
     await axios
       .patch(`${BASE_URI}/period`, {
         params: { period: JSON.stringify(p) },
       })
       .then((value) => {
-        console.log(value);
         alert("수강 신청 기간이 설정되었습니다!");
       })
       .catch((err) => {

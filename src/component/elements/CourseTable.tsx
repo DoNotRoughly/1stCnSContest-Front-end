@@ -19,7 +19,6 @@ const CourseTable: React.FC<Props> = ({
   setUserData,
   setFilteredCourse,
 }) => {
-  // console.log(`table: ${userData.name}`);
   return (
     <table>
       <tr>

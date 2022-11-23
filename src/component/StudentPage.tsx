@@ -40,19 +40,6 @@ const StudentPage: React.FC<Props> = ({
         setLogined(false);
         alert("잘못된 접근입니다.");
       });
-    // await axios
-    //   .get(`${BASE_URI}/course/filter`, {
-    //     params: { label: "major", value: "" },
-    //   })
-    //   .then((value) => {
-    //     setFilteredCourse(value.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setUserData(EmptyUserData);
-    //     setLogined(false);
-    //     alert("잘못된 접근입니다.");
-    //   });
   };
   useEffect(() => {
     init();

@@ -22,17 +22,13 @@ const CourseRow: React.FC<Props> = ({
 }) => {
   const [visible, setVisible] = useState(false);
 
-  // console.log(`row: ${userData.name}`);
-
   const cancel = async () => {
     // 취소 신청 보냄
-    console.log(userData, course);
     await axios
       .patch(`${BASE_URI}/user/cancel`, {
         params: { userId: userData.userId, courseId: course.courseId },
       })
       .then((value) => {
-        console.log(value);
         setUserData(value.data.user);
         alert("신청 취소되었습니다!");
       })
@@ -40,18 +36,15 @@ const CourseRow: React.FC<Props> = ({
         console.log(err.response.data);
         alert(err.response.data.message);
       });
-    console.log(userData);
   };
 
   const apply = async () => {
     // 수강 신청을 보냄
-    console.log(userData, course);
     await axios
       .patch(`${BASE_URI}/user/apply`, {
         params: { userId: userData.userId, courseId: course.courseId },
       })
       .then((value) => {
-        console.log(value);
         setUserData(value.data.user);
         alert("신청되었습니다!");
       })
@@ -59,10 +52,7 @@ const CourseRow: React.FC<Props> = ({
         console.log(err.response.data);
         alert(err.response.data.message);
       });
-    console.log(userData);
   };
-
-  // console.log(course.courseId);
 
   return (
     <tr>

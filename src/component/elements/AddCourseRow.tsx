@@ -20,16 +20,6 @@ const AddCourseRow: React.FC<Props> = ({ setFilteredCourse }) => {
 
   const addCourse = async () => {
     // 과목을 추가
-    console.log({
-      year: year,
-      courseId: courseId,
-      name: name,
-      professor: professor,
-      point: point,
-      major: major,
-      currentPeople: 0,
-      maxPeople: maxPeople,
-    });
     await axios
       .put(`${BASE_URI}/course`, {
         params: {
@@ -46,7 +36,6 @@ const AddCourseRow: React.FC<Props> = ({ setFilteredCourse }) => {
         },
       })
       .then((value) => {
-        console.log(value);
         setFilteredCourse(value.data.result);
         alert("신청되었습니다!");
       })
@@ -54,7 +43,6 @@ const AddCourseRow: React.FC<Props> = ({ setFilteredCourse }) => {
         console.log(err.response.data);
         alert("실패했습니다!");
       });
-    console.log("K");
   };
 
   return (
